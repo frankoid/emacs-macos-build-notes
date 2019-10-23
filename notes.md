@@ -1,27 +1,16 @@
-To build emacs-26.3 on 10.14 using Homebrew libs:
+# Emacs build notes - macOS
 
+## To build emacs-26.3 on 10.14 using Homebrew libs:
+
+### One-Time Setup
+
+    brew install jpeg gnutls
     cp /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg ~/Desktop
 
-Run pkg from desktop
+Run pkg from desktop.
 
-    (PATH=`pwd`/build-tools:"$PATH" && rm -fr emacs-build && mkdir emacs-build && cd emacs && ./autogen.sh && cd ../emacs-build && ../emacs/configure --with-ns && nice make -j8 && make install)
-
+Set up build-tools directory with symlinks:
 ```
-$ otool -L /Applications/Emacs.app/Contents/MacOS/Emacs
-/Applications/Emacs.app/Contents/MacOS/Emacs:
-	/System/Library/Frameworks/AppKit.framework/Versions/C/AppKit (compatibility version 45.0.0, current version 1671.60.107)
-	/System/Library/Frameworks/IOKit.framework/Versions/A/IOKit (compatibility version 1.0.0, current version 275.0.0)
-	/usr/local/opt/jpeg/lib/libjpeg.9.dylib (compatibility version 13.0.0, current version 13.0.0)
-	/usr/lib/libxml2.2.dylib (compatibility version 10.0.0, current version 10.9.0)
-	/usr/lib/libncurses.5.4.dylib (compatibility version 5.4.0, current version 5.4.0)
-	/usr/local/opt/gnutls/lib/libgnutls.30.dylib (compatibility version 54.0.0, current version 54.2.0)
-	/usr/lib/libz.1.dylib (compatibility version 1.0.0, current version 1.2.11)
-	/usr/lib/libSystem.B.dylib (compatibility version 1.0.0, current version 1252.250.1)
-	/System/Library/Frameworks/CoreFoundation.framework/Versions/A/CoreFoundation (compatibility version 150.0.0, current version 1575.17.0)
-	/System/Library/Frameworks/CoreGraphics.framework/Versions/A/CoreGraphics (compatibility version 64.0.0, current version 1265.9.0)
-	/System/Library/Frameworks/CoreText.framework/Versions/A/CoreText (compatibility version 1.0.0, current version 1.0.0)
-	/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation (compatibility version 300.0.0, current version 1575.17.0)
-	/usr/lib/libobjc.A.dylib (compatibility version 1.0.0, current version 228.0.0)
 $ ls -l build-tools
 total 0
 lrwxr-xr-x  1 francis  staff  22 13 Oct  2017 aclocal -> /usr/local/bin/aclocal
@@ -43,4 +32,28 @@ lrwxr-xr-x  1 francis  staff  35 16 May  2018 texi2any -> /usr/local/opt/texinfo
 lrwxr-xr-x  1 francis  staff  35 16 May  2018 texi2dvi -> /usr/local/opt/texinfo/bin/texi2dvi
 lrwxr-xr-x  1 francis  staff  35 16 May  2018 texi2pdf -> /usr/local/opt/texinfo/bin/texi2pdf
 lrwxr-xr-x  1 francis  staff  35 16 May  2018 texindex -> /usr/local/opt/texinfo/bin/texindex
+```
+
+
+### Build Command
+
+    (PATH=`pwd`/build-tools:"$PATH" && rm -fr emacs-build && mkdir emacs-build && cd emacs && ./autogen.sh && cd ../emacs-build && ../emacs/configure --with-ns && nice make -j8 && make install)
+
+## Misc Notes
+```
+$ otool -L /Applications/Emacs.app/Contents/MacOS/Emacs
+/Applications/Emacs.app/Contents/MacOS/Emacs:
+	/System/Library/Frameworks/AppKit.framework/Versions/C/AppKit (compatibility version 45.0.0, current version 1671.60.107)
+	/System/Library/Frameworks/IOKit.framework/Versions/A/IOKit (compatibility version 1.0.0, current version 275.0.0)
+	/usr/local/opt/jpeg/lib/libjpeg.9.dylib (compatibility version 13.0.0, current version 13.0.0)
+	/usr/lib/libxml2.2.dylib (compatibility version 10.0.0, current version 10.9.0)
+	/usr/lib/libncurses.5.4.dylib (compatibility version 5.4.0, current version 5.4.0)
+	/usr/local/opt/gnutls/lib/libgnutls.30.dylib (compatibility version 54.0.0, current version 54.2.0)
+	/usr/lib/libz.1.dylib (compatibility version 1.0.0, current version 1.2.11)
+	/usr/lib/libSystem.B.dylib (compatibility version 1.0.0, current version 1252.250.1)
+	/System/Library/Frameworks/CoreFoundation.framework/Versions/A/CoreFoundation (compatibility version 150.0.0, current version 1575.17.0)
+	/System/Library/Frameworks/CoreGraphics.framework/Versions/A/CoreGraphics (compatibility version 64.0.0, current version 1265.9.0)
+	/System/Library/Frameworks/CoreText.framework/Versions/A/CoreText (compatibility version 1.0.0, current version 1.0.0)
+	/System/Library/Frameworks/Foundation.framework/Versions/C/Foundation (compatibility version 300.0.0, current version 1575.17.0)
+	/usr/lib/libobjc.A.dylib (compatibility version 1.0.0, current version 228.0.0)
 ```
