@@ -1,4 +1,9 @@
-To build emacs-26.3 on 10.14 using Homebrew libs:
+## To build emacs-27 branch on 10.15 using Homebrew libs
+
+    brew install texinfo lcms2 librsvg # and probably some other packages
+    (PATH=`pwd`/build-tools:"$PATH" && rm -fr emacs-27-build && mkdir emacs-27-build && cd emacs-27 && ./autogen.sh && cd ../emacs-27-build && ../emacs-27/configure --with-ns && nice make -j16 && make install)
+
+## To build emacs-26.3 on 10.14 using Homebrew libs:
 
     cp /Library/Developer/CommandLineTools/Packages/macOS_SDK_headers_for_macOS_10.14.pkg ~/Desktop
 
