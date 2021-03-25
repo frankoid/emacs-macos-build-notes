@@ -1,8 +1,37 @@
 # Emacs build notes - macOS
 
+## To build emacs-27 branch on 11.2.3 using Homebrew libs
+
+    brew install lcms2 librsvg # and probably some other packages
+
+    rm -fr emacs-27-build && mkdir emacs-27-build && cd emacs-27 && ./autogen.sh && cd ../emacs-27-build && ../emacs-27/configure --with-ns && nice make -j16 && make install
+
 ## To build emacs-27 branch on 10.15 using Homebrew libs
 
     brew install texinfo lcms2 librsvg # and probably some other packages
+
+    $ ls -l build-tools
+    total 0
+    lrwxr-xr-x  1 francis  staff  22 20 Mar  2020 aclocal -> /usr/local/bin/aclocal
+    lrwxr-xr-x  1 francis  staff  27 20 Mar  2020 aclocal-1.15 -> /usr/local/bin/aclocal-1.15
+    lrwxr-xr-x  1 francis  staff  23 20 Mar  2020 autoconf -> /usr/local/bin/autoconf
+    lrwxr-xr-x  1 francis  staff  25 20 Mar  2020 autoheader -> /usr/local/bin/autoheader
+    lrwxr-xr-x  1 francis  staff  23 20 Mar  2020 autom4te -> /usr/local/bin/autom4te
+    lrwxr-xr-x  1 francis  staff  23 20 Mar  2020 automake -> /usr/local/bin/automake
+    lrwxr-xr-x  1 francis  staff  28 20 Mar  2020 automake-1.15 -> /usr/local/bin/automake-1.15
+    lrwxr-xr-x  1 francis  staff  25 20 Mar  2020 autoreconf -> /usr/local/bin/autoreconf
+    lrwxr-xr-x  1 francis  staff  23 20 Mar  2020 autoscan -> /usr/local/bin/autoscan
+    lrwxr-xr-x  1 francis  staff  25 20 Mar  2020 autoupdate -> /usr/local/bin/autoupdate
+    lrwxr-xr-x  1 francis  staff  31 20 Mar  2020 info -> /usr/local/opt/texinfo/bin/info
+    lrwxr-xr-x  1 francis  staff  39 20 Mar  2020 install-info -> /usr/local/opt/texinfo/bin/install-info
+    lrwxr-xr-x  1 francis  staff  35 20 Mar  2020 makeinfo -> /usr/local/opt/texinfo/bin/makeinfo
+    lrwxr-xr-x  1 francis  staff  38 20 Mar  2020 pdftexi2dvi -> /usr/local/opt/texinfo/bin/pdftexi2dvi
+    lrwxr-xr-x  1 francis  staff  35 20 Mar  2020 pod2texi -> /usr/local/opt/texinfo/bin/pod2texi
+    lrwxr-xr-x  1 francis  staff  35 20 Mar  2020 texi2any -> /usr/local/opt/texinfo/bin/texi2any
+    lrwxr-xr-x  1 francis  staff  35 20 Mar  2020 texi2dvi -> /usr/local/opt/texinfo/bin/texi2dvi
+    lrwxr-xr-x  1 francis  staff  35 20 Mar  2020 texi2pdf -> /usr/local/opt/texinfo/bin/texi2pdf
+    lrwxr-xr-x  1 francis  staff  35 20 Mar  2020 texindex -> /usr/local/opt/texinfo/bin/texindex
+
     (PATH=`pwd`/build-tools:"$PATH" && rm -fr emacs-27-build && mkdir emacs-27-build && cd emacs-27 && ./autogen.sh && cd ../emacs-27-build && ../emacs-27/configure --with-ns && nice make -j16 && make install)
 
 ## To build emacs-26.3 on 10.14 using Homebrew libs:
