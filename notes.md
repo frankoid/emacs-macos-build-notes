@@ -4,4 +4,4 @@
 
     brew install autoconf automake lcms2 librsvg texinfo gnutls # and probably some other packages
     export PATH="/usr/local/opt/texinfo/bin:$PATH"
-    rm -fr emacs-29-build && mkdir emacs-29-build && cd emacs-29 && ./autogen.sh && cd ../emacs-29-build && ../emacs-29/configure --with-ns && nice make -j8 && make install
+    rm -fr emacs-30-build && mkdir emacs-30-build && cd emacs-30 && ./autogen.sh && cd ../emacs-30-build && ../emacs-30/configure --with-ns && nice make -j16 && make install
